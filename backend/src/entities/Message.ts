@@ -12,7 +12,7 @@ export class Message {
     @Column("date")
     date: Date;
 
-    @Column("string")
+    @Column() 
     image: string;
 
     constructor(content: string, date: Date, image: string) {

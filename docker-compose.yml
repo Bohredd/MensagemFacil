@@ -1,0 +1,43 @@
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - MensagemFacilNetwork
+  
+  backend:
+    build: 
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - MensagemFacilNetwork
+    depends_on:
+      - MensagemFacil-db
+    environment:
+      DB_HOST: MensagemFacil-db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: MensagemFacil
+
+  MensagemFacil-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: MensagemFacil
+    ports:
+      - "5432:5432"
+    networks:
+      - MensagemFacilNetwork 
+      
+networks:
+  MensagemFacilNetwork:
+    driver: bridge
