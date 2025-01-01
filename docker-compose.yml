@@ -4,12 +4,13 @@ services:
       context: .
       dockerfile: ./frontend/Dockerfile
     ports:
-      - "80:80"
+      - "3000:3000"
     depends_on:
       - backend
     networks:
       - MensagemFacilNetwork
-  
+    command: npm start
+    
   backend:
     build: 
       context: .
