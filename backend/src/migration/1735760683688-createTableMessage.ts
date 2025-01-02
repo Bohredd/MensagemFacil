@@ -8,7 +8,7 @@ export class CreateTableMessage1735760683688 implements MigrationInterface {
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 content VARCHAR(255) NOT NULL,
                 date DATE NOT NULL,
-                image VARCHAR(255) NOT NULL
+                image VARCHAR(255) NULL
             );
         `);
     }

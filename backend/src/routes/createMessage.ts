@@ -6,7 +6,10 @@ const createMessageRouter = Router();
 
 createMessageRouter.post("/messages", (req, res) => {
   const { content, date, image } = req.body;
-  const message = new Message(content, date, image);
+
+  const message: Message = new Message(content, date);
+
+  if (image) message.image = image;
 
   const messages = AppDataSource.getRepository(Message);
   messages.save(message).then((message) => {

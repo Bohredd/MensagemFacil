@@ -3,21 +3,21 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Message {
-    @PrimaryGeneratedColumn()
-    id!: number; // se usar o ! significa que a não passagem de dados, o banco irá criar um id automaticamente
+  @PrimaryGeneratedColumn()
+  id!: number; // se usar o ! significa que a não passagem de dados, o banco irá criar um id automaticamente
 
-    @Column()
-    content: string;
+  @Column()
+  content: string;
 
-    @Column("date")
-    date: Date;
+  @Column("date")
+  date: Date;
 
-    @Column() 
-    image: string;
+  @Column({ nullable: true })
+  image?: string;
 
-    constructor(content: string, date: Date, image: string) {
-        this.content = content;
-        this.date = date;
-        this.image = image;
-    }
+  constructor(content: string, date: Date, image?: string) {
+    this.content = content;
+    this.date = date;
+    if (image) this.image = image;
+  }
 }
