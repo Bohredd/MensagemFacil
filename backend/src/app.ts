@@ -1,10 +1,15 @@
 import express from "express";
 import { AppDataSource } from "./ormconfig";
 import messageRoutes from "./routes/messageRoutes";
-
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
+app.use(cors(
+  {
+    origin: "*"
+  }
+));
 
 const PORT = process.env.PORT || 5000;
 
